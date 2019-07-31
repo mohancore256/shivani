@@ -1,0 +1,80 @@
+<br>
+<br>
+<form id="UserRegistrationForm" [formGroup]="UserRegistrationForm" (ngSubmit)="onRegistration()">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-2"><label for="firstName">First Name :</label></div>
+      <div class="col-md-6">
+        <input formControlName="firstName" type="text" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-danger">
+          <div *ngIf="submitted && f.firstName.errors.required">First Name is required</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-2"><label for="lastName">Last Name :</label></div>
+      <div class="col-md-6">
+        <input formControlName="lastName" type="text">
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-danger">
+            <div *ngIf="submitted && f.lastName.errors.required">Last Name is required</div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2"><label for="employeeId">Employee Id :</label></div>
+      <div class="col-md-6">
+        <input formControlName="employeeId" type="text">
+        <div *ngIf="submitted && f.employeeId.errors" class="invalid-danger">
+            <div *ngIf="submitted && f.employeeId.errors.required">Employee Id is required</div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-primary" type="submit">Add</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary">Reset</button>
+          </div>
+          <div class="col-md-8"></div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <!--Neec to add dotted line-->
+
+
+    <!--Neec to add dotted line-->
+    <br>
+    <br>
+
+    <!--Result of search bar-->
+
+  </div>
+
+</form>
+
+
+    <div class="row">
+      <div class="col-md-4"> <input type="text" value="search"></div>
+      <div class="col-md-1"> <label>Sort :</label></div>
+      <div class="col-md-2"><button>First Name</button></div>
+      <div class="col-md-2"><button>Last Name</button></div>
+      <div class="col-md-1"><button>Id</button></div>
+    </div>
+
+<div *ngFor='let item of userList' >
+    <app-view-user [userDetails]='item'> </app-view-user>
+</div>
