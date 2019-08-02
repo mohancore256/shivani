@@ -1,14 +1,17 @@
 <br>
 <br>
-<form >
+<form id="AddProjectFrom" [formGroup]="AddProjectFrom" (ngSubmit)="onRegistrationProject()" >
   <div class="container">
 
     <div class="row">
       <div class="col-md-1">
-        <label>Project :</label>
+        <label for="projectName" >Project :</label>
       </div>
       <div class="col-md-11">
-        <input type="text">
+        <input formControlName="projectName" type="text">
+        <div *ngIf="submitted && f.projectName.errors" class="invalid-danger">
+          <div *ngIf="submitted && f.projectName.errors.required">Project Name is required</div>
+        </div>
       </div>
     </div>
 
@@ -16,10 +19,18 @@
         <div class="col-md-1"></div>
         <div class="col-md-11">
           <div class="row">
-              <div class="col-md-1"><input type="checkbox"></div>
+              <div class="col-md-1"><input  type="checkbox"></div>
               <div class="col-md-3"><label>Set Start and End Date</label></div>
-              <div class="col-md-2"><input type="date" value="startdate"></div>
-              <div class="col-md-2"><input type="date" value="enddate"></div>
+              <div class="col-md-2"><input formControlName="startDate" type="date" placeholder="mm/dd/yyyy">
+                <div *ngIf="submitted && f.startDate.errors" class="invalid-danger">
+                  <div *ngIf="submitted && f.startDate.errors.required">Start Date is required</div>
+                </div>
+              </div>
+              <div class="col-md-2"><input formControlName="endDate" type="date" placeholder="mm/dd/yyyy">
+                <div *ngIf="submitted && f.endDate.errors" class="invalid-danger">
+                  <div *ngIf="submitted && f.endDate.errors.required">End Date is required</div>
+                </div>
+              </div>
 
           </div>
 
@@ -27,27 +38,57 @@
     </div>
 
         <div class="row">
-          <div class="col-md-5 " id="priority"><label>Priority :</label></div>
-          <div class="col-md-7"><input type="range"  name="volume" min="0" max="30"></div>  
+          <div class="col-md-1 " id="priority"><label for="priority">Priority :</label></div>
+          <div class="col-md-11"><input formControlName="priority" type="range"  name="volume" min="0" max="30">
+            <div *ngIf="submitted && f.priority.errors" class="invalid-danger">
+              <div *ngIf="submitted && f.priority.errors.required">Set Priority </div>
+            </div>
+          </div>  
         </div>
        
         <div class="row">
-            <div class="col-md-4"><label>Manager :</label></div>
-            <div class="col-md-6"><input type="text"></div>
+            <div class="col-md-2"><label for="manager">Manager :</label></div>
+            <div class="col-md-4"><input formControlName="manager" type="text">
+              <div *ngIf="submitted && f.manager.errors" class="invalid-danger">
+                <div *ngIf="submitted && f.manager.errors.required">Manager Nameis required</div>
+              </div>
+            </div>
             <div class="col-md-2"><button>Search</button></div>
         </div>
+
+       
 
         <div class="row">
              <div class="col-md-8"></div>
              <div class="col-md-4">
                  <div class="row">
-                     <div class="col-md-2"><button>Add</button></div>
-                     <div class="col-md-4"><button>Add</button></div>
+                     <div class="col-md-2"><button class="btn btn-primary" type="submit">Add</button></div>
+                     <div class="col-md-4"><button   (click)="reset()" class="btn btn-primary" >Reset</button></div>
                    </div>
                </div>
          </div>
 
-    
+         <hr>
 
   </div>
 </form>
+
+<form class="container">
+
+  <div class="row">
+    <div class="col-ls-12"> <input placeholder="search..." type="text" ></div>
+  </div>
+
+  <div class="row">
+   <div class="col-ls-1"><label>sort by:</label></div>
+   <div class="col-ls-3"><button>Start Date</button></div>
+   <div class="col-ls-3"><button>End Date</button></div>
+   <div class="col-ls-3"><button>Priority</button></div>
+   <div class="col-ls-2"><button>Completed</button></div>
+  </div>
+
+</form>
+
+<div *ngFor='let item of projectList'>
+  <app-view-project [projectDetails]='item'></app-view-project>
+</div>

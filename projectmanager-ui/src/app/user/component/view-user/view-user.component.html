@@ -4,12 +4,12 @@
 
   <div class="row">
     <div class="col-md-6"><input type="text" [(ngModel)]="userDetails.firstName"></div>
-    <div class="col-md-3"><button>Edit</button></div>
+    <div class="col-md-3"><button (click)="editUser()">Edit</button></div>
   </div>
 
   <div class="row">
       <div class="col-md-6"><input type="text" [(ngModel)]="userDetails.lastName" ></div>
-      <div class="col-md-3"><button>Delete</button></div>
+      <div class="col-md-3"><button (click)="deleteUser()">Delete</button></div>
   </div>
 
   <div class="row">

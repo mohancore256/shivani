@@ -10,6 +10,7 @@ import { User } from './user/model/user';
 import { AddProjectComponent } from './project/component/add-project/add-project.component';
 import { ViewComponent } from './user/component/view/view.component';
 import { ViewUserComponent } from './user/component/view-user/view-user.component';
+import { ViewProjectComponent } from './project/component/view-project/view-project.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ViewUserComponent } from './user/component/view-user/view-user.componen
     FooterComponent,
     AddProjectComponent,
     ViewComponent,
-    ViewUserComponent
+    ViewUserComponent,
+    ViewProjectComponent
   ],
   imports: [
     BrowserModule,

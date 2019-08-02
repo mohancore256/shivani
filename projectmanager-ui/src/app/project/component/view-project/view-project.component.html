@@ -1,0 +1,71 @@
+<div class="container">
+
+  <div class="row">
+
+<!--Project Detail-->
+<div class="col-md-8">
+
+      <!--Project Name-->
+       <div class="row">
+           <div class="col-md-3"><label>Project :</label></div>
+           <div class="col-md-9"><input [(ngModel)] ="projectDetails.projectName" type="text"></div>
+       </div>
+
+<!-- no of task and comleted-->
+       <div class="row">
+         <!--No of task-->
+         <div class="col-md-6">
+          <div class="row">
+             <div class="col-md-6"><label>No Of Task :</label></div>
+             <div class="col-md-6"><input type="text"></div>
+          </div>
+         </div>
+         
+         <!--Completed-->
+         <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6"><label>Completed :</label></div>
+                <div class="col-md-6"><input type="text"></div>
+             </div>
+         </div> 
+       </div>
+
+       <!-- Start Date and End Date-->
+       <div class="row">
+              <div class="col-md-6"> 
+                       <div class="row">
+                            <div class="col-md-6"><label>Start Date :</label></div> 
+                            <div class="col-md-6"><input [(ngModel)] ="projectDetails.startDate" type="text"></div>
+                         </div>
+
+               </div>
+
+                <div class="col-md-6"> 
+                    <div class="row">
+                        <div class="col-md-6"><label>End Date :</label></div> 
+                        <div class="col-md-6"><input [(ngModel)] ="projectDetails.endDate" type="text"></div>
+                     </div>
+                </div>
+        </div>
+        </div>
+
+<!-- Priority-->
+     <div class="col-md-2">
+       <div class="row">
+         <div class="col-md-12"><label>Priority :</label></div>
+       </div>
+       <div class="row">
+         <div class="col-md-12"><input  [(ngModel)] ="projectDetails.priority" type="text"></div>
+       </div>
+     </div>
+
+<!--Update and suspend button-->
+     <div class="col-md-2">
+       <div class="row"><div class="col-md-12"><button>Update</button></div></div>
+       <div class="row"><div class="col-md-12"><button>Suspend</button></div></div>
+     </div>
+
+     <hr> 
+</div>
+
+</div>

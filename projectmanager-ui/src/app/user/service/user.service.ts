@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../model/user';
 import { Observable } from 'rxjs';
 
@@ -18,5 +18,14 @@ export class UserService {
 
   getAllUser():Observable<any>{
     return this.http.get(this.myUrl+"/getAll");
+  }
+
+  updateUser(user:User):Observable<any>{
+    return this.http.post(this.myUrl+"/update", user);
+  }
+
+  deleteUser(user:User){
+    const params = new HttpParams().set('userId',user.userId);
+    return this.http.delete(this.myUrl+"/delete",{params});
   }
 } 

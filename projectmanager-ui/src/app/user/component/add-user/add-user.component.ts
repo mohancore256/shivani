@@ -11,12 +11,13 @@ import { UserService } from '../../service/user.service';
 export class AddUserComponent implements OnInit {
 
   user: User;
-  userList:[];
+  userList: User[];
   UserRegistrationForm: FormGroup;
   submitted = false;
+  searchInput:string;
 
 
-  constructor(private fb: FormBuilder, private userService:UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   onRegistration() {
     this.submitted = true;
@@ -32,10 +33,10 @@ export class AddUserComponent implements OnInit {
     this.userService.saveUser(this.user).subscribe(resp => {
       this.user = resp;
       console.log(this.user);
-      if(this.user.userId != null && this.user.userId != undefined){
-        this.userService.getAllUser().subscribe( resp => {
-          this.userList = resp;
-         })
+      if (this.user.userId != null && this.user.userId != undefined) {
+        this.userService.getAllUser().subscribe(resp => {
+          this.userList = resp as User[];
+        })
       }
     });
 
@@ -47,14 +48,39 @@ export class AddUserComponent implements OnInit {
       lastName: ['', Validators.required],
       employeeId: ['', Validators.required]
     });
-    this.userService.getAllUser().subscribe( resp => {
-     this.userList = resp;
+    this.userService.getAllUser().subscribe(resp => {
+      this.userList = resp;
     })
   }
 
   get f() { return this.UserRegistrationForm.controls; }
 
+  sortAction(source: string) {
+    if (source == 'firstName') {
+     this.userList = this.userList.sort((a, b) => a.firstName.localeCompare(b.firstName));
+    } else if (source == 'lastName') {
+      this.userList = this.userList.sort((a, b) => a.lastName.localeCompare(b.lastName));
+    } else if (source == 'employeeId') {
+      this.userList = this.userList.sort((a, b) => a.employeeId.localeCompare(b.employeeId));
+    }
+  }
 
+  loadAllUser(){
+    this.userService.getAllUser().subscribe(resp => {
+      this.userList = resp as User[];
+    });
+  }
 
+  performSearch(){
+    console.log(this.searchInput);
+    this.userService.getAllUser().subscribe(resp => {
+      this.userList = resp as User[];
+      this.userList = this.userList.filter(item =>(item.firstName.search(new RegExp(this.searchInput)) > -1));
+    });      
+  }
 
+  reset(){
+    this.UserRegistrationForm.reset();
+    this.submitted = false;
+  }
 }
