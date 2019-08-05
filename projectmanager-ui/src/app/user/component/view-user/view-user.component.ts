@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AddUserComponent } from '../add-user/add-user.component';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/user';
-import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-view-user',
@@ -9,7 +9,7 @@ import { AddUserComponent } from '../add-user/add-user.component';
   styleUrls: ['./view-user.component.css']
 })
 export class ViewUserComponent implements OnInit {
-
+  
   @Input()
    public userDetails:User;
 

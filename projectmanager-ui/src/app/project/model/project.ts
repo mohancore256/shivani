@@ -1,5 +1,4 @@
 export class Project {
-
     projectId:string;
 
     projectName:string;
@@ -11,4 +10,6 @@ export class Project {
     priority:number;
     
     manager :string;
+    
+    status:string;
 }

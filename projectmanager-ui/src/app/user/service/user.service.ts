@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient, HttpParams } from '@angular/common/http';
-import { User } from '../model/user';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  
   myUrl =  "http://localhost:8080/projectManager/user";
 
   constructor(private http: HttpClient) { }
@@ -28,4 +29,4 @@ export class UserService {
     const params = new HttpParams().set('userId',user.userId);
     return this.http.delete(this.myUrl+"/delete",{params});
   }
-} 
+}

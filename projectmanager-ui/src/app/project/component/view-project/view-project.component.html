@@ -23,9 +23,9 @@
          
          <!--Completed-->
          <div class="col-md-6">
-            <div class="row">
+            <div class="row completed">
                 <div class="col-md-6"><label>Completed :</label></div>
-                <div class="col-md-6"><input type="text"></div>
+                <div class="col-md-6"><input [(ngModel)]="projectDetails.status" disabled="true" type="text"></div>
              </div>
          </div> 
        </div>
@@ -41,8 +41,8 @@
                </div>
 
                 <div class="col-md-6"> 
-                    <div class="row">
-                        <div class="col-md-6"><label>End Date :</label></div> 
+                    <div class="row completed">
+                        <div class="col-md-6"><label >End Date :</label></div> 
                         <div class="col-md-6"><input [(ngModel)] ="projectDetails.endDate" type="text"></div>
                      </div>
                 </div>
@@ -61,8 +61,8 @@
 
 <!--Update and suspend button-->
      <div class="col-md-2">
-       <div class="row"><div class="col-md-12"><button>Update</button></div></div>
-       <div class="row"><div class="col-md-12"><button>Suspend</button></div></div>
+       <div class="row"><div class="col-md-12"><button (click)="editProject()" >Update</button></div></div>
+       <div class="row"><div class="col-md-12"><button (click)="suspendProject()" >Suspend</button></div></div>
      </div>
 
      <hr> 

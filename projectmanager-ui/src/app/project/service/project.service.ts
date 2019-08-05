@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpParams, HttpClient } from '@angular/common/http';
 import { Project } from '../model/project';
 
 @Injectable({
@@ -13,6 +13,7 @@ export class ProjectService {
   myAppUrl =  "http://localhost:8080/projectManager/project";
 
   addProject(project:Project):Observable<any>{
+    console.log(project);
     return this.http.post(this.myAppUrl+"/save", project);
   }
 
@@ -22,7 +23,7 @@ export class ProjectService {
 
   deleteProject(project:Project){
     const params = new HttpParams().set('projectId', project.projectId )
-     this.http.delete(this.myAppUrl+"/delete", {params});
+     return this.http.delete(this.myAppUrl+"/delete", {params});
   }
 
   editProject(project:Project):Observable<any>{

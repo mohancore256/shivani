@@ -83,4 +83,5 @@ export class AddUserComponent implements OnInit {
     this.UserRegistrationForm.reset();
     this.submitted = false;
   }
+
 }

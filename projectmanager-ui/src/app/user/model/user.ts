@@ -1,11 +1,9 @@
 export class User {
+    firstName:string;
 
-     firstName:string;
+    lastName:string;
 
-     lastName:string;
-
-     employeeId:string;
-    
+    employeeId:string;
+   
     userId:string;
-
 }

@@ -52,24 +52,19 @@
     </div>
 
     <hr class="saprate">
-
-    <br>
-    <br>
-
-    <!--Result of search bar-->
-
   </div>
 
 </form>
-<div class="row">
-  <div class="col-md-4"> <input  placeholder="Search" type="text" (keyup)="performSearch()" [(ngModel)]="searchInput"></div>
-  <div class="col-md-1"> <label>Sort :</label></div>
-  <div class="col-md-2"><button (click) = "sortAction('firstName')">First Name</button></div>
-  <div class="col-md-2"><button (click) = "sortAction('lastName')">Last Name</button></div>
-  <div class="col-md-1"><button (click) = "sortAction('employeeId')">Id</button></div>
-</div>
 
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"> <input  class="search" placeholder="Search" type="text" (keyup)="performSearch()" [(ngModel)]="searchInput"></div>
+        <div class="col-md-1"> <label>Sort :</label></div>
+        <div class="col-md-2"><button  class="block" (click) = "sortAction('firstName')">First Name</button></div>
+        <div class="col-md-2"><button  class="block" (click) = "sortAction('lastName')">Last Name</button></div>
+        <div class="col-md-1"><button  class="block" (click) = "sortAction('employeeId')">Id</button></div>
+      </div>
+    </div>
 
 <div *ngFor='let item of userList' >
     <app-view-user [userDetails]='item'> </app-view-user>
