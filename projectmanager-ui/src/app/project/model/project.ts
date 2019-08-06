@@ -1,3 +1,5 @@
+import { User } from 'src/app/user/model/user';
+
 export class Project {
     projectId:string;
 
@@ -12,4 +14,6 @@ export class Project {
     manager :string;
     
     status:string;
+
+    users:User[];
 }

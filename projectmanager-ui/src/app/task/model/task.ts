@@ -1,3 +1,6 @@
+import { Project } from 'src/app/project/model/project';
+import { User } from 'src/app/user/model/user';
+
 export class Task {
 
     taskId : number;
@@ -13,5 +16,8 @@ export class Task {
     endDate : Date;
 
     priority :number;
+
+    users:User[];
+    projects:Project;
 
 }

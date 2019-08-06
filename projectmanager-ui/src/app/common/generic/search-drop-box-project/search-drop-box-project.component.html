@@ -1,0 +1,11 @@
+<input  type="text"           
+            [ngModel]="textToSort"
+            (ngModelChange)="textChange($event)"
+            (keyup)="onKeyDownAction($event)" 
+           />
+<div *ngIf="showDropDown">
+     <p *ngFor="let item of dummyDataList">
+        <label (click)="updateTextBox(item)">{{item[columnName]}}</label>
+     </p>     
+</div>
+ 

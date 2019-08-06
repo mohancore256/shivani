@@ -20,7 +20,9 @@ export class AddProjectComponent implements OnInit {
   submitted = false;
   searchInput:string;
   userList:User[];
-  searchUserResult:User[];
+  columnName:string = "firstName";
+  userProject = new Project();
+  
   
 
   constructor(private fb: FormBuilder, private userService: UserService,private projectService: ProjectService,private datePipe: DatePipe) { }
@@ -31,7 +33,7 @@ export class AddProjectComponent implements OnInit {
       startDate: ["", Validators.required],
       endDate: ["", Validators.required],
       priority: ["", Validators.required],
-      manager: ["", Validators.required],
+      manager: [""],
       enableDateFields: [false]
     });
     this.reset();
@@ -77,7 +79,8 @@ export class AddProjectComponent implements OnInit {
     this.project.endDate = this.AddProjectFrom.get("endDate").value;
     this.project.priority = this.AddProjectFrom.get("priority").value;
     this.project.manager = this.AddProjectFrom.get("manager").value;
-    this.project.status="IN-COMPLETE"
+    this.project.status="IN-COMPLETE";
+    this.project.users = this.userProject.users;
     console.log(this.project);
     this.projectService.addProject(this.project).subscribe(response => {
       this.project = response as Project;
@@ -99,6 +102,7 @@ export class AddProjectComponent implements OnInit {
       this.projectList = response as Project[];
       this.userService.getAllUser().subscribe(resp => {
         this.userList = resp as User[];
+        //console.log(this.userList);
       });
     });
   }
@@ -118,17 +122,19 @@ export class AddProjectComponent implements OnInit {
   }
 
   performSearch(){
-    console.log(this.searchInput);
+    //console.log(this.searchInput);
     this.projectService.loadAllProject().subscribe(response => {
       this.projectList = response as Project[];
       this.projectList = this.projectList.filter(item =>(item.projectName.search(new RegExp(this.searchInput)) > -1));
     });      
   }
 
-  searchUser(){
-    console.log(this.searchInput);   
-    this.submitted = false;
-    this.searchUserResult = this.userList.filter(item =>(item.firstName.search(new RegExp(this.searchInput)) > -1));    
+  populateManger(mangerUser){
+    console.log("output ...****")
+    console.log(mangerUser);
+    this.userProject.users = [];
+    this.userProject.users.push(mangerUser);
   }
+ 
   
 }

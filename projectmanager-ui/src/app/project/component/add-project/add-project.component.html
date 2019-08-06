@@ -8,7 +8,7 @@
         <label for="projectName">Project :</label>
       </div>
       <div class="col-md-11">
-        <input formControlName="projectName" type="text">
+        <input  class="mohan" formControlName="projectName" type="text">
         <div *ngIf="submitted && f.projectName.errors" class="invalid-danger">
           <div *ngIf="submitted && f.projectName.errors.required">Project Name is required</div>
         </div>
@@ -40,7 +40,7 @@
 
     <div class="row">
       <div class="col-md-1 " id="priority"><label for="priority">Priority :</label></div>
-      <div class="col-md-11"><input formControlName="priority" type="range" name="volume" min="0" max="30">
+      <div class="col-md-11"><input class ="slider" formControlName="priority" type="range" name="volume" min="0" max="30">
         <div *ngIf="submitted && f.priority.errors" class="invalid-danger">
           <div *ngIf="submitted && f.priority.errors.required">Set Priority </div>
         </div>
@@ -48,19 +48,10 @@
     </div>
 
     <div class="row ">
-      <div class="col-md-2"><label for="manager">Manager :</label>
-        <ul *ngFor="let user of searchUserResult | filter: manager">
-          <li>{{user.firstName}}</li>
-        </ul>
+      <div class="col-md-2"><label for="manager">Manager :</label></div>
+      <div  class="col-md-4 ">
+        <app-search-drop-box  [dataList] = "userList" [columnName] = "columnName" (selectedUser)="populateManger($event)"></app-search-drop-box>
       </div>
-      <div class="col-md-4 "><input formControlName="manager" type="text">
-        <div *ngIf="submitted && f.manager.errors" class="invalid-danger">
-          <div *ngIf="submitted && f.manager.errors.required">Manager Nameis required</div>
-        </div>
-      </div>
-
-      
-      <div class="col-md-2"><button (click)="searchUser()">Search</button></div>
     </div>
 
 
@@ -80,20 +71,24 @@
   </div>
 </form>
 
+
 <div class="container">
   <div class="row">
-    <div class="col-ls-12"> <input placeholder="search..." type="text" [(ngModel)]="searchInput"
+    <div class="col-md-12"> <input class="mohan" placeholder="search..." type="text" [(ngModel)]="searchInput"
         (keyup)="performSearch()"></div>
   </div>
 
   <div class="row">
-    <div class="col-ls-1"><label>sort by:</label></div>
-    <div class="col-ls-2"><button class="block" (click)="sortingAction('startDate')">Start Date</button></div>
-    <div class="col-ls-3"><button class="block" (click)="sortingAction('endDate')">End Date</button></div>
-    <div class="col-ls-3"><button class="block" (click)="sortingAction('priority')">Priority</button></div>
-    <div class="col-ls-1"><button class="block" (click)="sortingAction('completed')">Completed</button></div>
+    <div class="col-md-1"><label>sort by:</label></div>
+    <div class="col-md-2"><button class="block" (click)="sortingAction('startDate')">Start Date</button></div>
+    <div class="col-md-3"><button class="block" (click)="sortingAction('endDate')">End Date</button></div>
+    <div class="col-md-3"><button class="block" (click)="sortingAction('priority')">Priority</button></div>
+    <div class="col-md-1"><button class="block" (click)="sortingAction('completed')">Completed</button></div>
   </div>
   <div *ngFor='let item of projectList'>
     <app-view-project [projectDetails]='item'></app-view-project>
   </div>
 </div>
+
+
+

@@ -1,16 +1,20 @@
 <br>
-<form>
+<form id="AddTaskForm" [formGroup]="AddTaskForm"(ngSubmit)="onAddingTask()">
   <div class="container">
 
       <div class="row">
-        <div class="col-md-3"><label>Parent :</label></div>
-        <div class="col-md-6"><input type="text"></div>
-        <div class="col-md-3"><button>search</button></div>
+        <div class="col-md-3"><label >Project :</label></div>
+        <div class="col-md-6"> <app-search-drop-box-project  [dataList] = "projectsList" [columnName] = "columnNameForProjectSearch" (selectedProject)="populateProject($event)"></app-search-drop-box-project></div>
+        <!-- <div class="col-md-3"><button>search</button></div> -->
       </div>
 
       <div class="row">
-        <div class="col-md-3"><label>Task :</label></div>
-        <div class="col-md-9"><input type="text"></div>
+        <div class="col-md-3"><label for="taskName">Task :</label></div>
+        <div class="col-md-9"><input formControlName="taskName" type="text"  [ngClass]="{ 'is-invalid': submitted && f.taskName.errors }">
+          <div *ngIf="submitted && f.taskName.errors" class="invalid-danger">
+            <div *ngIf="submitted && f.taskName.errors.required">Task Name is required</div>
+          </div>
+        </div>
       </div>
 
       <div class="row">
@@ -21,42 +25,57 @@
       </div>
 
       <div class="row">
-        <div class="col-md-3"><label>Prioirty :</label></div>
-        <div class="col-md-9"><input type="range"></div>
+        <div class="col-md-3"><label for="priority" >Prioirty :</label></div>
+        <div class="col-md-9"><input class="slider" formControlName="priority" type="range" name="volume" min="0" max="30"  [ngClass]="{ 'is-invalid': submitted && f.priority.errors }">
+          <div *ngIf="submitted && f.priority.errors" class="invalid-danger">
+            <div *ngIf="submitted && f.priority.errors.required">Set the priority</div>
+          </div>         
+        </div>
       </div>
 
       <div class="row">
-        <div class="col-md-3"><label>Parent Task :</label></div>
-        <div class="col-md-9"><input type="text"></div>
+        <div class="col-md-3"><label >Parent Task :</label></div>
+        <div class="col-md-6"><input  type="text"></div>
+        <div class="col-md-3"><button>search</button></div>
       </div>
 
       <div class="row">
         <div class="col-md-6">
           <div class="row"> 
-            <div class="col-md-6"><label>Start Date :</label></div>
-            <div class="col-md-6"><input type="text"></div>
+            <div class="col-md-6"><label for="startDate">Start Date :</label></div>
+            <div class="col-md-6"><input formControlName="startDate" type="date" [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }">
+              <div *ngIf="submitted && f.startDate.errors" class="invalid-danger">
+                <div *ngIf="submitted && f.startDate.errors.required">Set the priority</div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="col-md-6">
             <div class="row"> 
-              <div class="col-md-6"><label>End Date :</label></div>
-              <div class="col-md-6"><input type="text"></div>
+              <div class="col-md-6"><label for="endDate">End Date :</label></div>
+              <div class="col-md-6"><input formControlName="endDate" type="date" [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }">
+                <div *ngIf="submitted && f.endDate.errors" class="invalid-danger">
+                  <div *ngIf="submitted && f.endDate.errors.required">Set the priority</div>
+                </div>
+              </div>
             </div>
           </div>
       </div>
 
       <div class="row">
          <div class="col-md-3"><label>User :</label></div>
-         <div class="col-md-9"><input type="text"></div>
+         <!-- <div class="col-md-6"><input type="text"></div>
+         <div class="col-md-3"><button>search</button></div> -->
+         <div class="col-md-3"><app-search-drop-box  [dataList] = "userList" [columnName] = "columnName" (selectedUser)="populateUser($event)"></app-search-drop-box></div>
       </div>
 
       <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6">
            <div class="row">
-             <div class="col-md-6"><button>Add Task</button></div>
-             <div class="col-md-6"><button>Reset</button></div>
+             <div class="col-md-6"><button class="btn btn-primary" type="submit">Add Task</button></div>
+             <div class="col-md-6"><button class="btn btn-primary" (click)="reset()">Reset</button></div>
            </div>
         </div>
       </div>
