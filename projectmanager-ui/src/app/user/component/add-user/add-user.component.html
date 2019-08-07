@@ -37,14 +37,14 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6"></div>
+      <div class="col-md-2"></div>
       <div class="col-md-6">
         <div class="row">
-          <div class="col-md-2">
-            <button class="btn btn-primary" type="submit">Add</button>
+          <div class="col-md-4">
+            <button type="submit">Add</button>
           </div>
-          <div class="col-md-2">
-            <button class="btn btn-primary" (click)="reset()">Reset</button>
+          <div class="col-md-4">
+            <button type="submit" (click)="reset()">Reset</button>
           </div>
           <div class="col-md-8"></div>
         </div>
@@ -60,10 +60,11 @@
     <div class="row">
         <div class="col-md-4"> <input  class="search" placeholder="Search" type="text" (keyup)="performSearch()" [(ngModel)]="searchInput"></div>
         <div class="col-md-1"> <label>Sort :</label></div>
-        <div class="col-md-2"><button  class="block" (click) = "sortAction('firstName')">First Name</button></div>
-        <div class="col-md-2"><button  class="block" (click) = "sortAction('lastName')">Last Name</button></div>
-        <div class="col-md-1"><button  class="block" (click) = "sortAction('employeeId')">Id</button></div>
+        <div class="col-md-2"><button type="submit" (click) = "sortAction('firstName')">First Name</button></div>
+        <div class="col-md-2"><button type="submit" (click) = "sortAction('lastName')">Last Name</button></div>
+        <div class="col-md-1"><button type="submit" (click) = "sortAction('employeeId')">Id</button></div>
       </div>
+      <hr class="saprate">
     </div>
 
 <div *ngFor='let item of userList' >

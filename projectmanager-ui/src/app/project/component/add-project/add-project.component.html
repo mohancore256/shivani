@@ -4,10 +4,10 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-md-1">
+      <div class="col-md-2">
         <label for="projectName">Project :</label>
       </div>
-      <div class="col-md-11">
+      <div class="col-md-10">
         <input  class="mohan" formControlName="projectName" type="text">
         <div *ngIf="submitted && f.projectName.errors" class="invalid-danger">
           <div *ngIf="submitted && f.projectName.errors.required">Project Name is required</div>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-1"></div>
+      <div class="col-md-2"></div>
       <div class="col-md-11">
         <div class="row">
           <div class="col-md-1"><input formControlName="enableDateFields" type="checkbox" (click)="showDateFields()">
@@ -39,8 +39,8 @@
     </div>
 
     <div class="row">
-      <div class="col-md-1 " id="priority"><label for="priority">Priority :</label></div>
-      <div class="col-md-11"><input class ="slider" formControlName="priority" type="range" name="volume" min="0" max="30">
+      <div class="col-md-2 " id="priority"><label for="priority">Priority :</label></div>
+      <div class="col-md-10"><input class ="slider" formControlName="priority" type="range" name="volume" min="0" max="30">
         <div *ngIf="submitted && f.priority.errors" class="invalid-danger">
           <div *ngIf="submitted && f.priority.errors.required">Set Priority </div>
         </div>
@@ -49,7 +49,7 @@
 
     <div class="row ">
       <div class="col-md-2"><label for="manager">Manager :</label></div>
-      <div  class="col-md-4 ">
+      <div  class="col-md-10">
         <app-search-drop-box  [dataList] = "userList" [columnName] = "columnName" (selectedUser)="populateManger($event)"></app-search-drop-box>
       </div>
     </div>
@@ -60,8 +60,8 @@
       <div class="col-md-8"></div>
       <div class="col-md-4">
         <div class="row">
-          <div class="col-md-2"><button class="btn btn-primary" type="submit">Add</button></div>
-          <div class="col-md-4"><button (click)="reset()" class="btn btn-primary">Reset</button></div>
+          <div class="col-md-4"><button type="submit">Add</button></div>
+          <div class="col-md-4"><button type="submit" (click)="reset()" class="btn btn-primary">Reset</button></div>
         </div>
       </div>
     </div>
@@ -79,11 +79,11 @@
   </div>
 
   <div class="row">
-    <div class="col-md-1"><label>sort by:</label></div>
-    <div class="col-md-2"><button class="block" (click)="sortingAction('startDate')">Start Date</button></div>
-    <div class="col-md-3"><button class="block" (click)="sortingAction('endDate')">End Date</button></div>
-    <div class="col-md-3"><button class="block" (click)="sortingAction('priority')">Priority</button></div>
-    <div class="col-md-1"><button class="block" (click)="sortingAction('completed')">Completed</button></div>
+    <div class="col-md-2"><label>sort by:</label></div>
+    <div class="col-md-2"><button type="submit" (click)="sortingAction('startDate')">Start Date</button></div>
+    <div class="col-md-2"><button type="submit" (click)="sortingAction('endDate')">End Date</button></div>
+    <div class="col-md-2"><button type="submit" (click)="sortingAction('priority')">Priority</button></div>
+    <div class="col-md-2"><button type="submit" (click)="sortingAction('completed')">Completed</button></div>
   </div>
   <div *ngFor='let item of projectList'>
     <app-view-project [projectDetails]='item'></app-view-project>
